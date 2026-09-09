@@ -9,20 +9,20 @@
             --bg-color: #090d16;
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: rgba(255, 255, 255, 0.08);
-            --card-hover-border: rgba(56, 189, 248, 0.4);
+            --card-hover-border: rgba(56, 189, 248, 0.5);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.2);
+            --accent-glow: rgba(56, 189, 248, 0.3);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none;     /* IE/Edge */
-            user-select: none;         /* Standard */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         body {
@@ -33,31 +33,63 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+            position: relative;
+        }
+
+        /* Animated background gradient orbs */
+        .bg-glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(129, 140, 248, 0.12));
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: floatOrb 10s ease-in-out infinite alternate;
+        }
+
+        .bg-glow.two {
+            top: 50%;
+            right: -10%;
+            background: linear-gradient(135deg, rgba(129, 140, 248, 0.1), rgba(236, 72, 153, 0.08));
+            animation-duration: 14s;
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-40px) scale(1.1); }
         }
 
         header {
             text-align: center;
-            padding: 4rem 1rem 2rem 1rem;
+            padding: 5rem 1rem 2rem 1rem;
+            animation: fadeInDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         header h1 {
-            font-size: 2.75rem;
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.03em;
             margin-bottom: 0.75rem;
-            background: linear-gradient(to right, #f8fafc, #38bdf8);
+            background: linear-gradient(to right, #f8fafc, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shimmer 6s ease infinite alternate;
+            background-size: 200% auto;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         header p {
             color: var(--text-secondary);
-            font-size: 1.125rem;
+            font-size: 1.15rem;
             max-width: 600px;
             margin: 0 auto;
+            opacity: 0.9;
         }
 
         main {
@@ -65,25 +97,40 @@
             max-width: 1100px;
             width: 100%;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 2rem 1.5rem 4rem 1.5rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.75rem;
         }
 
+        /* Liquid Glass Card Styling with Entrance Animation */
         .glass-card {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            padding: 2.25rem;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+        }
+
+        .glass-card:nth-child(1) { animation-delay: 0.2s; }
+        .glass-card:nth-child(2) { animation-delay: 0.35s; }
+        .glass-card:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .glass-card::before {
@@ -93,51 +140,74 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
         }
 
         .glass-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px) scale(1.01);
             border-color: var(--card-hover-border);
-            box-shadow: 0 20px 40px -15px var(--accent-glow);
+            box-shadow: 0 25px 50px -12px var(--accent-glow);
             background: rgba(255, 255, 255, 0.05);
         }
 
         .glass-card h3 {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             margin-bottom: 0.75rem;
             color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .glass-card:hover h3 {
+            color: var(--accent);
         }
 
         .glass-card p {
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
         }
 
+        /* Interactive Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.65rem 1.25rem;
+            padding: 0.7rem 1.4rem;
             font-size: 0.9rem;
             font-weight: 500;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
-            transition: all 0.25s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
         }
 
         .btn:hover {
             background: var(--accent);
             color: #090d16;
             border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: scale(1.02);
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
         footer {
@@ -146,12 +216,22 @@
             color: var(--text-secondary);
             font-size: 0.875rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(9, 13, 22, 0.5);
+            background: rgba(9, 13, 22, 0.6);
             backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Background Animated Orbs -->
+    <div class="bg-glow" style="top: -10%; left: -5%;"></div>
+    <div class="bg-glow two"></div>
 
     <header>
         <h1>Project Showcase</h1>
@@ -184,7 +264,7 @@
         <p>&copy; 2026 littledummy445. Powered by GitHub Pages & Liquid Glass UI.</p>
     </footer>
 
-    <!-- Script to block right-click and text selection dynamically -->
+    <!-- Script to block right-click and text selection -->
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.addEventListener('selectstart', event => event.preventDefault());
