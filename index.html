@@ -36,7 +36,6 @@
             position: relative;
         }
 
-        /* Animated background gradient orbs */
         .bg-glow {
             position: absolute;
             width: 450px;
@@ -49,11 +48,18 @@
         }
 
         .bg-glow.two {
-            top: 50%;
+            top: 40%;
             right: -10%;
             background: linear-gradient(135deg, rgba(129, 140, 248, 0.1), rgba(236, 72, 153, 0.08));
             animation-duration: 14s;
             animation-direction: alternate-reverse;
+        }
+
+        .bg-glow.three {
+            bottom: -5%;
+            left: 20%;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(16, 185, 129, 0.08));
+            animation-duration: 12s;
         }
 
         @keyframes floatOrb {
@@ -100,13 +106,29 @@
             padding: 2rem 1.5rem 4rem 1.5rem;
         }
 
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.1s;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
             gap: 1.75rem;
         }
 
-        /* Liquid Glass Card Styling with Entrance Animation */
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
@@ -120,11 +142,16 @@
             transform: translateY(30px);
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .glass-card:nth-child(1) { animation-delay: 0.2s; }
         .glass-card:nth-child(2) { animation-delay: 0.35s; }
         .glass-card:nth-child(3) { animation-delay: 0.5s; }
+        .glass-card:nth-child(4) { animation-delay: 0.2s; }
+        .glass-card:nth-child(5) { animation-delay: 0.35s; }
 
         @keyframes fadeInUp {
             to {
@@ -168,7 +195,6 @@
             margin-bottom: 1.75rem;
         }
 
-        /* Interactive Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -185,6 +211,7 @@
             color: var(--text-primary);
             position: relative;
             overflow: hidden;
+            width: fit-content;
         }
 
         .btn::after {
@@ -229,9 +256,9 @@
 </head>
 <body>
 
-    <!-- Background Animated Orbs -->
     <div class="bg-glow" style="top: -10%; left: -5%;"></div>
     <div class="bg-glow two"></div>
+    <div class="bg-glow three"></div>
 
     <header>
         <h1>Project Showcase</h1>
@@ -239,23 +266,49 @@
     </header>
 
     <main>
+        <h2 class="section-title"><span>⚡</span> Featured Systems</h2>
         <div class="grid">
             <div class="glass-card">
-                <h3>noVNC Remote Desktop</h3>
-                <p>Web-based remote desktop and virtual environment interface designed for seamless browser streaming.</p>
+                <div>
+                    <h3>noVNC Remote Desktop</h3>
+                    <p>Web-based remote desktop and virtual environment interface designed for seamless browser streaming.</p>
+                </div>
                 <a href="#" class="btn">Launch Project</a>
             </div>
 
             <div class="glass-card">
-                <h3>AppsOnline Cloud</h3>
-                <p>Virtualization ecosystem allowing users to run operating systems and developer utilities instantly in browser windows.</p>
+                <div>
+                    <h3>AppsOnline Cloud</h3>
+                    <p>Virtualization ecosystem allowing users to run operating systems and developer utilities instantly in browser windows.</p>
+                </div>
                 <a href="#" class="btn">View Details</a>
             </div>
 
             <div class="glass-card">
-                <h3>DigitalPlat Ecosystem</h3>
-                <p>Infrastructure collection featuring custom domain routing, automated configurations, and web experiments.</p>
+                <div>
+                    <h3>DigitalPlat Ecosystem</h3>
+                    <p>Infrastructure collection featuring custom domain routing, automated configurations, and web experiments.</p>
+                </div>
                 <a href="#" class="btn">Explore Network</a>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="animation-delay: 0.3s;"><span>📂</span> GitHub Repositories</h2>
+        <div class="grid">
+            <div class="glass-card">
+                <div>
+                    <h3>macOS in GitHub Actions</h3>
+                    <p>Automated cloud orchestration setup running macOS environments directly inside GitHub Actions workflows.</p>
+                </div>
+                <a href="https://github.com/littledummy445/macos-in-githubactions" target="_blank" class="btn">View Repository</a>
+            </div>
+
+            <div class="glass-card">
+                <div>
+                    <h3>ChatGPT Clone (OmniChat AI)</h3>
+                    <p>Feature-rich artificial intelligence conversational assistant interface modeled after modern chat apps.</p>
+                </div>
+                <a href="https://github.com/littledummy445/ChatGPT-Clone" target="_blank" class="btn">View Repository</a>
             </div>
         </div>
     </main>
@@ -264,13 +317,11 @@
         <p>&copy; 2026 littledummy445. Powered by GitHub Pages & Liquid Glass UI.</p>
     </footer>
 
-    <!-- Script to block right-click and text selection -->
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.addEventListener('selectstart', event => event.preventDefault());
     </script>
 
-    <!-- Chatbase Embed Script -->
     <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="9H1oqYrl8VxI_fjT7Qrgw";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
