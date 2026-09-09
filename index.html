@@ -20,10 +20,9 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* Disable text selection globally */
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none;     /* IE/Edge */
+            user-select: none;         /* Standard */
         }
 
         body {
@@ -75,7 +74,6 @@
             gap: 1.5rem;
         }
 
-        /* Liquid Glass Card Styling */
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
@@ -118,7 +116,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Interactive Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -154,7 +151,7 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
     <header>
         <h1>Project Showcase</h1>
@@ -186,6 +183,12 @@
     <footer>
         <p>&copy; 2026 littledummy445. Powered by GitHub Pages & Liquid Glass UI.</p>
     </footer>
+
+    <!-- Script to block right-click and text selection dynamically -->
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('selectstart', event => event.preventDefault());
+    </script>
 
     <!-- Chatbase Embed Script -->
     <script>
