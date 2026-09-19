@@ -196,6 +196,13 @@
             margin-bottom: 1.75rem;
         }
 
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -238,6 +245,25 @@
             transform: translateY(-2px);
         }
 
+        .codespaces-badge-btn {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .codespaces-badge-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .codespaces-badge-btn img {
+            height: 32px;
+            border-radius: 6px;
+        }
+
         footer {
             text-align: center;
             padding: 2.5rem 1rem;
@@ -274,7 +300,9 @@
                     <h3>noVNC Remote Desktop</h3>
                     <p>Web-based remote desktop and virtual environment interface designed for seamless browser streaming.</p>
                 </div>
-                <a href="#" class="btn">Launch Project</a>
+                <div class="card-actions">
+                    <a href="#" class="btn">Launch Project</a>
+                </div>
             </div>
 
             <div class="glass-card">
@@ -282,7 +310,9 @@
                     <h3>AppsOnline Cloud</h3>
                     <p>Virtualization ecosystem allowing users to run operating systems and developer utilities instantly in browser windows.</p>
                 </div>
-                <a href="#" class="btn">View Details</a>
+                <div class="card-actions">
+                    <a href="#" class="btn">View Details</a>
+                </div>
             </div>
 
             <div class="glass-card">
@@ -290,7 +320,9 @@
                     <h3>DigitalPlat Ecosystem</h3>
                     <p>Infrastructure collection featuring custom domain routing, automated configurations, and web experiments.</p>
                 </div>
-                <a href="#" class="btn">Explore Network</a>
+                <div class="card-actions">
+                    <a href="#" class="btn">Explore Network</a>
+                </div>
             </div>
         </div>
 
@@ -301,7 +333,9 @@
                     <h3>macOS in GitHub Actions</h3>
                     <p>Automated cloud orchestration setup running macOS environments directly inside GitHub Actions workflows.</p>
                 </div>
-                <a href="https://github.com/littledummy445/macos-in-githubactions" target="_blank" class="btn">View Repository</a>
+                <div class="card-actions">
+                    <a href="https://github.com/littledummy445/macos-in-githubactions" target="_blank" class="btn">View Repository</a>
+                </div>
             </div>
 
             <div class="glass-card">
@@ -309,7 +343,9 @@
                     <h3>ChatGPT Clone (OmniChat AI)</h3>
                     <p>Feature-rich artificial intelligence conversational assistant interface modeled after modern chat apps.</p>
                 </div>
-                <a href="https://github.com/littledummy445/ChatGPT-Clone" target="_blank" class="btn">View Repository</a>
+                <div class="card-actions">
+                    <a href="https://github.com/littledummy445/ChatGPT-Clone" target="_blank" class="btn">View Repository</a>
+                </div>
             </div>
 
             <div class="glass-card">
@@ -317,7 +353,12 @@
                     <h3>ChromeOS Flex Docker</h3>
                     <p>Run a full ChromeOS Flex environment inside a Docker container with hardware acceleration and browser access.</p>
                 </div>
-                <a href="https://github.com/littledummy445/chromeos-flex-docker" target="_blank" class="btn">View Repository</a>
+                <div class="card-actions">
+                    <a href="https://github.com/littledummy445/chromeos-flex-docker" target="_blank" class="btn">View Repository</a>
+                    <a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=littledummy445/chromeos-flex-docker" target="_blank" class="codespaces-badge-btn" title="Open in GitHub Codespaces">
+                        <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces">
+                    </a>
+                </div>
             </div>
         </div>
     </main>
